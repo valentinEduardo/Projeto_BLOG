@@ -14,8 +14,8 @@ $image='uploads/'.$arquivo['name'];
 $stmt->bindParam(":title", $title);
 $stmt->bindParam(":data", $data);
 $stmt->bindParam(":description", $description);
-$stmt->bindParam(":image", $arquivo);
+$stmt->bindParam(":image", $image);
 $stmt->execute();
 
 //redireciona o arquivo
-header("Location:insert.php");
+header("Location:view.php");
