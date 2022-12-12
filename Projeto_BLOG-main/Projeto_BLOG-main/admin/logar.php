@@ -4,12 +4,12 @@ include('../config/connection.php');
     session_start();
 
         $login = $_POST['login'];
-        $senha = $_POST['senha'];
-
+        $senha = md5($_POST[substr('senha',0 , 8)]);
+$senhaReduzida = substr($senha,0, 8);
         $stmt = $conectar->prepare("SELECT * FROM users WHERE login = :LOGIN AND senha = :SENHA");
 
         $stmt->bindParam(":LOGIN", $login);
-        $stmt->bindParam(":SENHA", $senha);
+$stmt->bindParam(":SENHA", $senhaReduzida);
 
         //$stmt->bindValue(":LOGIN", md5($senha);
 

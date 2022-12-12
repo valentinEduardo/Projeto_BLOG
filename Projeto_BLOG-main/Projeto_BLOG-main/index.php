@@ -84,29 +84,23 @@ height: 90px;
   </div>
 
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4" id="cards">
-<div class="col">
+    
+ 
   <?php foreach($results as $post): ?>
-                      <div class="card">
-                      <img src="<?= $post["image"] ?>" class="card-img-top" alt="...">
-		      <div class="card-body">
-		        <h5 class="card-title">
-<?= $post["title"]?>
-        </h5>
-		        <p class="card-text">
-<?= $post["description"]?>
-         </p>
-		        <a href="viewBlog.php?id=<?= $post["id"] ?>">
+  <div class="card" style="width: 18rem;">
+  <img src="<?= $post["image"] ?>" class="card-img-top" alt="...">
+  <div class="card-body">
+  <h5 class="card-title">
+<?= $post["title"]?></h5>
+<p class="card-text">
+<?= $post["description"]?> </p>
+<a href="viewPost.php?id=<?= $post["id"] ?>" class="btn btn-primary">
 <i class="fas fa-eye check-icon">Ver</i>
         </a>
-		      </div>
-                      </div>
-                    </div>
-                     <?php endforeach; ?>
   </div>
-  
-		  
-		 
+</div>
+<?php endforeach; ?>
+		</div>
 <!--olá--> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
       </div>

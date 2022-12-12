@@ -4,7 +4,7 @@ include "nav.php";
 
 $id = $_GET['id'];
 
-$stmt = $conectar->prepare("SELECT * FROM posts WHERE id = :id");
+$stmt = $conectar->prepare("SELECT * FROM post WHERE id = :id");
 $stmt->execute(array('id'=>$id));
 
 $results = $stmt->fetchALL(PDO::FETCH_ASSOC);
