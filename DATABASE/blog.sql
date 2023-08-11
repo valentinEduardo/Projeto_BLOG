@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 15-Dez-2022 às 23:44
--- Versão do servidor: 10.1.37-MariaDB
--- versão do PHP: 7.3.1
+-- Tempo de geração: 11-Ago-2023 às 19:28
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `blog`
+-- Banco de dados: `blog`
 --
 
 -- --------------------------------------------------------
@@ -30,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `category` (
   `idCategory` int(11) NOT NULL,
-  `name_cat` varchar(30) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `name_cat` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Extraindo dados da tabela `category`
@@ -39,7 +38,8 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`idCategory`, `name_cat`) VALUES
 (1, 'Programação'),
-(2, 'Marcação');
+(2, 'Marcação'),
+(3, 'Hardware');
 
 -- --------------------------------------------------------
 
@@ -51,21 +51,24 @@ CREATE TABLE `post` (
   `id` int(11) NOT NULL,
   `idCategory` int(11) NOT NULL,
   `title` varchar(30) NOT NULL,
-  `category` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `description` longtext,
+  `category` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` mediumtext DEFAULT NULL,
   `data` date DEFAULT NULL,
-  `image` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `image` varchar(150) NOT NULL,
+  `news` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Extraindo dados da tabela `post`
 --
 
-INSERT INTO `post` (`id`, `idCategory`, `title`, `category`, `description`, `data`, `image`) VALUES
-(11, 2, 'HTML5', 'Marcação', 'NOVO HTML', '2022-12-09', 'uploads/download.jpg'),
-(12, 1, 'PYTHON', 'Programação', 'Python no front esta cada vez mais proximo', '2022-12-10', 'uploads/python.png'),
-(13, 1, 'C', '', '<p>Linguagem mae</p>', '2022-12-10', 'uploads/download.png'),
-(14, 1, 'JAVA', '', '<p>JAVA JAVALI</p>', '2022-12-10', 'uploads/bg.jpg');
+INSERT INTO `post` (`id`, `idCategory`, `title`, `category`, `description`, `data`, `image`, `news`) VALUES
+(11, 2, 'HTML5', 'Marcação', 'NOVO HTML', '2022-12-09', 'uploads/ISO_C++_Logo.svg.png', 'testeee'),
+(12, 1, 'PYTHON', 'Programação', 'Python no front esta cada vez mais proximo', '2022-12-10', 'uploads/python.png', ''),
+(13, 1, 'C', '', '<p>Linguagem mae</p>', '2022-12-10', 'uploads/download.png', ''),
+(14, 1, 'JAVA', '', 'Java', '2022-12-10', 'uploads/produtos_55_produto-teste-nao-usar_www.alternativagameselan.com.br_zz4ef5edb9b8.png', '<p>teste 2</p>'),
+(22, 1, 'C++', '', '<p>C++ NA CRIA&Ccedil;&Atilde;O DE JOGOS&nbsp;</p>', '2023-08-10', 'uploads/ISO_C++_Logo.svg.png', ''),
+(23, 1, 'Título teste', '', 'Descrição teste', '2023-08-10', 'uploads/produtos_55_produto-teste-nao-usar_www.alternativagameselan.com.br_zz4ef5edb9b8.png', '<p>Noticia teste teste teste teste teste teste teste</p>');
 
 -- --------------------------------------------------------
 
@@ -75,10 +78,10 @@ INSERT INTO `post` (`id`, `idCategory`, `title`, `category`, `description`, `dat
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `nome` text CHARACTER SET utf8 NOT NULL,
-  `login` varchar(20) CHARACTER SET utf8 NOT NULL,
-  `senha` varchar(8) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nome` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `login` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `senha` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Extraindo dados da tabela `users`
@@ -87,55 +90,56 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `nome`, `login`, `senha`) VALUES
 (6, 'Valentin Eduardo', 'ADMmaster', '76bf1508'),
 (8, 'Lucas Carvalho', 'hui', '81dc9bdb'),
-(9, 'Miguel', 'Billy', '81dc9bdb');
+(9, 'Miguel', 'Billy', '81dc9bdb'),
+(10, 'Miguel', 'ADM', '202cb962');
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `category`
+-- Índices para tabela `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`idCategory`);
 
 --
--- Indexes for table `post`
+-- Índices para tabela `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_posts_category` (`idCategory`);
 
 --
--- Indexes for table `users`
+-- Índices para tabela `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT de tabela `category`
 --
 ALTER TABLE `category`
-  MODIFY `idCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `post`
+-- AUTO_INCREMENT de tabela `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
