@@ -50,7 +50,14 @@
             <p><a href="?sair">Deslogar</a></p>
             <ul class="nav flex-column">
                 <li class="nav-item">
-<a href="insert.php">ADICIONAR POSTS</a>
+                    <div>
+                 <a href="insert.php">ADICIONAR POSTS</a>       
+                    </div>
+                    <div>
+                 <a href="insert_cat.php">ADICIONAR CATEGORIA</a>  
+                    </div>
+
+
                 </li>
             </ul>
     </nav>
